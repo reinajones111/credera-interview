@@ -24,12 +24,14 @@ _Next, we need to download the code to your computer so that you can begin addin
   - If you are having trouble, try referring to a cheat sheet to determine how to navigate folders using the command line [Mac]('https://www.makeuseof.com/tag/mac-terminal-commands-cheat-sheet/') / [Windows]('http://www.cs.columbia.edu/~sedwards/classes/2017/1102-spring/Command%20Prompt%20Cheatsheet.pdf')
 
 ## **Downloading the code**
-<img width="1250" height="57" alt="Screenshot 2026-09-30 at 08 50 15" src="https://github.com/user-attachments/assets/95d100e9-26ec-4272-b46f-6ead7449b96b" />
+
 - In the GitHub Page, on the top right, click the green "Use This Template" button to duplicate this project for your personal repository
 - Run the following command to `clone` the code into the folder location you created in the steps above
   - `git clone <url_from_github>`
 - Once the code is downloaded, use the command line prompts to `cd` into the codebase
   - `cd <name_of_your_cloned_repo>`
+ 
+<img width="1250" height="57" alt="Screenshot 2026-09-30 at 08 50 15" src="https://github.com/user-attachments/assets/95d100e9-26ec-4272-b46f-6ead7449b96b" />
 
 ## **Installing Dependencies**
 
