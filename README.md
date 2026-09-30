@@ -27,7 +27,7 @@ _Next, we need to download the code to your computer so that you can begin addin
 
 - In the GitHub Page, on the top right, click the green "Use This Template" button to duplicate this project for your personal repository
 - Run the following command to `clone` the code into the folder location you created in the steps above
-  - `git clone <url_from_github>`
+  - `git clone <url_of_duplicated_respository_from_github>`
 - Once the code is downloaded, use the command line prompts to `cd` into the codebase
   - `cd <name_of_your_cloned_repo>`
 
