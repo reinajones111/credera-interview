@@ -4,12 +4,12 @@ _The next steps are possibly the most challenging portion of the assignment. Thr
 
 ## **Establishing your development environment**
 
-- Download and install your preferred code editor (we recommend Visual Studio Code! https://code.visualstudio.com/)
+- Download and install your preferred code editor (we recommend Visual Studio Code! <https://code.visualstudio.com/>)
 - Download and install node.js (Node + npm will be used as our package manager for our code dependencies)
-  - Download/Install the LTS version here https://nodejs.org/en/download/
+  - Download/Install the LTS version here <https://nodejs.org/en/download/>
   - Open a terminal (Mac) or command prompt (Windows) and type `npm` - You should be presented with a version # (if not, then you might need to troubleshoot!)
 - Download and install `git`
-  - See install instructions here: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+  - See install instructions here: <https://git-scm.com/book/en/v2/Getting-Started-Installing-Git>
 
 # Get the code
 
@@ -25,7 +25,7 @@ _Next, we need to download the code to your computer so that you can begin addin
 
 ## **Downloading the code**
 
-- In the GitHub classroom, click the green "Code" button to get the URL for your personal repository
+- In the GitHub Page, on the top right, click the green "Use This Template" button to duplicate this project for your personal repository
 - Run the following command to `clone` the code into the folder location you created in the steps above
   - `git clone <url_from_github>`
 - Once the code is downloaded, use the command line prompts to `cd` into the codebase
@@ -38,7 +38,7 @@ _Next, we need to download the code to your computer so that you can begin addin
 
 # Running the application
 
-In order to run the application, you will actually need to run TWO commands simultaneously. The first command will be responsible for running our mock API that is used to supply the data our application needs. The second command is used to run the application using Webpack - which bundles our Javascript and serves it up on localhost along with our markup and styles
+In order to run the application, you will actually need to run TWO commands simultaneously. The first command will be responsible for running our mock API that is used to supply the data our application needs. The second command is used to run the application using Vite - which bundles our Javascript and serves it up on localhost along with our markup and styles
 
 ## **Run the API**
 
