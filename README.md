@@ -30,6 +30,8 @@ _Next, we need to download the code to your computer so that you can begin addin
   - `git clone <url_of_duplicated_respository_from_github>`
 - Once the code is downloaded, use the command line prompts to `cd` into the codebase
   - `cd <name_of_your_cloned_repo>`
+ 
+<img width="1250" height="57" alt="Screenshot 2026-09-30 at 08 50 15" src="https://github.com/user-attachments/assets/95d100e9-26ec-4272-b46f-6ead7449b96b" />
 
 ## **Installing Dependencies**
 
