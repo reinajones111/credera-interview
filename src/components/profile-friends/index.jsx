@@ -61,6 +61,9 @@ export const ProfileFriends = () => {
                 aria-label="Stuart Raymond"
               ></div>
               <div className="profile-list-item-info">
+                {friend.topFriend && (
+                  <span className="top-friend-flag">★ Top Friend</span>
+                )}
                 <p className="page-paragraph">{friend.name}</p>
                 <p className="page-micro">
                   {friend.jobTitle} @ {friend.companyName}

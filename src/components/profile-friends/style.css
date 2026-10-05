@@ -28,11 +28,14 @@
 }
 
 .profile-list-item .top-friend-flag {
-  display: none;
-}
-
-.profile-list-item .top-friend-flag + .page-paragraph {
+  display: inline-block;
   margin-bottom: 8px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background-color: #fff3cd;
+  color: #7a5a00;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .profile-list-item-avatar {
