@@ -2,6 +2,18 @@ import './style.css';
 import { getFriendsListData } from '../../services/profile';
 import { useQuery } from '@tanstack/react-query';
 
+const getLastName = name => name.trim().split(/\s+/).pop();
+
+// Top friends first, then alphabetical by last name (first name breaks ties).
+// Sorts a copy so the cached query data isn't mutated.
+const sortFriends = friends =>
+  [...friends].sort(
+    (a, b) =>
+      Boolean(b.topFriend) - Boolean(a.topFriend) ||
+      getLastName(a.name).localeCompare(getLastName(b.name)) ||
+      a.name.localeCompare(b.name)
+  );
+
 export const ProfileFriends = () => {
   const { data, isLoading } = useQuery({
     queryKey: ['friends'],
@@ -47,7 +59,7 @@ export const ProfileFriends = () => {
       </section>
     );
 
-  const { friends } = data;
+  const friends = sortFriends(data.friends);
 
   return (
     <section id="profile-friends">
