@@ -27,6 +27,8 @@ function App() {
           <div className="content-grid-block--main">
             <ProfileHeader />
             <ProfilePosts />
+          </div>
+          <div className="content-grid-block--groups">
             <ProfileGroups />
           </div>
           <div className="content-grid-block--friends">

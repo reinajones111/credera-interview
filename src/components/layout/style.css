@@ -8,18 +8,25 @@
 .content-grid {
   display: grid;
   grid-template-columns: 1fr;
+  /* mobile order: main, friends, groups */
   grid-template-areas:
     "main"
-    "friends";
+    "friends"
+    "groups";
   grid-column-gap: 20px;
 }
 
 .content-grid-block--main {
-  grid-area: "main";
+  grid-area: main;
 }
 
 .content-grid-block--friends {
-  grid-area: "friends";
+  grid-area: friends;
+  margin-top: 32px;
+}
+
+.content-grid-block--groups {
+  grid-area: groups;
 }
 
 .content-card {
@@ -36,7 +43,15 @@
 @media only screen and (min-width: 1024px) {
   .content-grid {
     grid-template-columns: 1fr 400px;
-    grid-template-areas: "main friends";
+    /* friends spans both rows so groups stays under the main column */
+    grid-template-areas:
+      "main friends"
+      "groups friends";
+    grid-template-rows: auto 1fr;
     grid-column-gap: 20px;
+  }
+
+  .content-grid-block--friends {
+    margin-top: 0;
   }
 }
