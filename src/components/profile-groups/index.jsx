@@ -70,6 +70,11 @@ export const ProfileGroups = () => {
               className="profile-group-results-card content-card fade-in"
               href={group.href}
             >
+              {group.favorite ? (
+                <span className="profile-group-favorite-flag">
+                  <span aria-hidden="true">★</span> Favorite
+                </span>
+              ) : null}
               <div className="profile-group-avatar">
                 <img src={group.image} />
               </div>
