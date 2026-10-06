@@ -1,6 +1,37 @@
 #profile-friends {
 }
 
+.profile-friends-search {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px 16px 12px 44px;
+  border-radius: 999px;
+  background-color: var(--grayscale_1);
+  /* magnifier icon */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23525252' stroke-width='2.5' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 16px center;
+  color: var(--midnightBlack);
+  font-family: inherit;
+  font-size: 16px;
+  transition: box-shadow 0.2s ease;
+}
+
+.profile-friends-search::placeholder {
+  color: var(--deepSmoke);
+}
+
+.profile-friends-search:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.profile-friends-empty {
+  margin-top: 16px;
+  color: var(--deepSmoke);
+}
+
 .profile-friends-list {
   list-style: none;
   padding: 0;
@@ -30,6 +61,10 @@
     flex-direction: column;
   }
 
+  .profile-friends-search {
+    flex-shrink: 0;
+  }
+
   .profile-friends-list {
     flex: 1;
     min-height: 0;
@@ -51,6 +86,29 @@
   background-color: var(--grayscale_1);
   padding: 16px 24px;
   border-radius: 10px;
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* staggered entrance; backwards keeps rows hidden during their delay.
+   Doubled class so it beats the .fade-in shorthand in main.css. */
+.profile-list-item.fade-in {
+  animation-delay: calc(min(var(--i, 0), 10) * 60ms);
+  animation-fill-mode: backwards;
+}
+
+/* No sideways movement: the list scrolls on desktop and would show a
+   horizontal scrollbar. */
+.profile-list-item:hover {
+  background-color: var(--grayscale_0);
+  box-shadow: 0 2px 10px rgba(58, 58, 58, 0.12);
+}
+
+.profile-list-item-avatar {
+  transition: transform 0.25s ease;
+}
+
+.profile-list-item:hover .profile-list-item-avatar {
+  transform: scale(1.06);
 }
 
 .profile-list-item:last-child {
@@ -66,6 +124,21 @@
   color: #7a5a00;
   font-size: 12px;
   font-weight: 600;
+  animation: top-friend-pop 0.5s ease-out 0.4s backwards;
+}
+
+@keyframes top-friend-pop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .profile-list-item-avatar {

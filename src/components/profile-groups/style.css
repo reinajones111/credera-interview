@@ -2,31 +2,110 @@
   margin-top: 32px;
 }
 
+/* Heading on the left, "Explain activity levels" button on the right */
+.profile-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+.profile-group-info {
+  position: relative;
+}
+
+.profile-group-info-button {
+  padding: 8px 16px;
+  border: 1.5px solid var(--darkNavy);
+  border-radius: 999px;
+  background: none;
+  color: var(--darkNavy);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.profile-group-info-button:hover,
+.profile-group-info-button[aria-expanded='true'] {
+  background-color: var(--darkNavy);
+  color: var(--grayscale_0);
+}
+
+.profile-group-info-button:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Tooltip-style popover under the button, right-aligned with it */
+.profile-group-info-popover {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 10;
+  width: 320px;
+  max-width: calc(100vw - 32px);
+  padding: 18px 20px;
+  background-color: var(--grayscale_0);
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(58, 58, 58, 0.22);
+  animation: info-popover-in 0.18s ease-out;
+}
+
+/* little arrow pointing at the button */
+.profile-group-info-popover::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: 40px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--grayscale_0);
+  transform: rotate(45deg);
+  border-radius: 2px;
+}
+
+@keyframes info-popover-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Legend: one row per level, with a bar in the card's activity color */
 .profile-group-legend {
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px 20px;
-  width: fit-content;
-  max-width: 100%;
-  margin: 16px 0 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin: 0;
   padding: 0;
-  font-size: 14px;
-  color: var(--deepSmoke);
 }
 
 .profile-group-legend-item {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
+  gap: 4px;
+  padding: 2px 0 2px 14px;
+  border-left: 4px solid var(--activity-color);
+  font-size: 14px;
+  line-height: 19px;
+  color: var(--deepSmoke);
 }
 
-.profile-group-legend-swatch {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
+.profile-group-legend-name {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 16px;
+  text-transform: uppercase;
+  color: var(--midnightBlack);
 }
 
 .profile-group-results {
@@ -35,7 +114,7 @@
   padding: 0;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch; /* cards in a row share one height */
   justify-content: flex-start;
   margin: 16px -10px;
   flex-wrap: wrap;
@@ -54,16 +133,40 @@
   position: relative;
   overflow: hidden;
   display: flex;
+  flex: 1; /* fill the row height when a neighbor's name wraps */
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   padding: 0;
   width: 100%;
   max-width: 200px;
-  background-color: var(--grayscale_1);
+  background-color: var(--grayscale_0);
+  box-shadow: 0 2px 10px rgba(58, 58, 58, 0.12);
   text-decoration: none;
   color: var(--midnight_black);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 
+/* staggered entrance; backwards keeps cards hidden during their delay.
+   Doubled class so it beats the .fade-in shorthand in main.css. */
+.profile-group-results-card.fade-in {
+  animation-delay: calc(min(var(--i, 0), 8) * 70ms);
+  animation-fill-mode: backwards;
+}
+
+.profile-group-results-card:hover,
+.profile-group-results-card:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(58, 58, 58, 0.18);
+}
+
+.profile-group-results-card:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.profile-group-results-card:active {
+  transform: translateY(-2px);
 }
 
 /* Same pill as the friends list "Top Friend" flag (profile-friends/style.css).
@@ -82,29 +185,84 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
 }
 
+/* White text area under the photo and the activity bar */
 .profile-group-content {
   width: 100%;
-  padding: 16px 8px;
+  padding: 12px 8px 16px;
   text-align: center;
+  background-color: var(--grayscale_0);
 }
 
-.profile-group-content--active {
-  background-color: var(--secondary); /* #52C1AD */
+/* One color per activity level (and a readable text color on top of it) */
+.profile-group-activity--active {
+  --activity-color: var(--secondary); /* #52C1AD */
 }
 
-.profile-group-content--moderate {
-  background-color: var(--primary); /* #58B1C9 */
+.profile-group-activity--moderate {
+  --activity-color: var(--primary); /* #58B1C9 */
 }
 
-.profile-group-content--low {
-  background-color: var(--warning); /* #C152A2 */
+.profile-group-activity--low {
+  --activity-color: var(--warning); /* #C152A2 */
 }
 
-.profile-group-content--inactive {
-  background-color: #c4c4c4;
+.profile-group-activity--inactive {
+  --activity-color: #c4c4c4;
+}
+
+/* Neutral strip with dark text (readable whatever the activity color is) and
+   the activity color as a marker: a top line plus a dot. Appears between the
+   photo and the name; in the page it comes after the name so screen readers
+   hear "Dallas, Activity: Active". */
+.profile-group-activity-label {
+  order: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 8px;
+  background-color: var(--grayscale_1);
+  border-top: 4px solid var(--activity-color);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--midnightBlack);
+}
+
+.profile-group-activity-dot {
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--activity-color);
+}
+
+/* the name area grows to fill the card and centers the name in it */
+.profile-group-content {
+  order: 2;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .profile-group-avatar {
+  position: relative;
   display: inline-block;
   height: 190px;
   width: 100%;
@@ -118,11 +276,21 @@
   padding-bottom: 16px;
 }
 
+.profile-group-avatar {
+  overflow: hidden;
+}
+
 .profile-group-avatar img {
   height: 100%;
   width: 100%;
   object-fit: cover;
   background-color: var(--grayscale_2);
+  transition: transform 0.5s ease;
+}
+
+.profile-group-results-card:hover .profile-group-avatar img,
+.profile-group-results-card:focus-visible .profile-group-avatar img {
+  transform: scale(1.08);
 }
 
 /* SKELETON LOADING  */

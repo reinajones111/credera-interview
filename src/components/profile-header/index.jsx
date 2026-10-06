@@ -34,13 +34,13 @@ export const ProfileHeader = () => {
           <img className="loading" src="/avatar.png" />
         </div>
         <div className="profile-info content-card">
-          <h1 class={`profile-info-name skeleton-block skeleton-block--half`}>
+          <h1 className="profile-info-name">
             {fullName}
             <img src="/underline.svg" className="profile-underline" />
           </h1>
-          <p
-            class={`page-paragraph page-paragraph--smoke skeleton-block skeleton-block--quarter loading`}
-          />
+          <p className="page-paragraph page-paragraph--smoke profile-info-title">
+            {data?.jobTitle} @ {data?.companyName}
+          </p>
         </div>
       </div>
       {/* <pre>{JSON.stringify(profileData, null, 2)}</pre> */}

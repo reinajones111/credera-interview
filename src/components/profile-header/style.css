@@ -1,4 +1,5 @@
 .profile-header {
+  --avatar-size: 210px;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -12,8 +13,8 @@
   border: 4px solid var(--grayscale_0);
   border-radius: 50%;
   overflow: hidden;
-  height: 210px;
-  width: 210px;
+  height: var(--avatar-size);
+  width: var(--avatar-size);
   z-index: 999;
 }
 
@@ -22,12 +23,14 @@
   width: 100%;
 }
 
+/* Text sits to the right of the avatar. Margin (not a transform) keeps it
+   inside the page so it can wrap instead of overflowing on narrow screens. */
 .profile-info {
   flex: 1;
-  padding-left: 100px;
+  min-width: 0;
+  padding: 24px 0;
+  margin-left: calc(var(--avatar-size) + 18px);
   position: relative;
-  max-width: calc(100% - 100px);
-  transform: translateX(128px);
   background-color: transparent;
 }
 
@@ -39,8 +42,41 @@
 
 .profile-info-name .profile-underline {
   position: absolute;
-  bottom: 0;
+  bottom: -4px;
   left: 0;
+  max-width: 100%;
+}
+
+/* Job title and company, kept clear of the underline below the name */
+.profile-info-title {
+  margin-top: 14px;
+}
+
+/* Small screens: smaller avatar and name so the text has room beside it */
+@media only screen and (max-width: 640px) {
+  .profile-header {
+    --avatar-size: 120px;
+  }
+
+  .profile-avatar {
+    top: -40px;
+  }
+
+  .profile-info {
+    margin-left: calc(var(--avatar-size) + 14px);
+  }
+
+  .profile-info-name {
+    width: fit-content; /* so the red bar is no wider than the name */
+    max-width: 100%;
+    font-size: 30px;
+    line-height: 38px;
+  }
+
+  .profile-info-title {
+    font-size: 16px;
+    line-height: 20px;
+  }
 }
 
 /* SKELTON LOADING */
