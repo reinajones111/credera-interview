@@ -29,6 +29,10 @@ export const ProfilePosts = () => {
   }
 
   const { pinnedPost } = data;
+  const publishDate = new Date(pinnedPost.publishDate).toLocaleDateString(
+    'en-US',
+    { year: 'numeric', month: 'long', day: 'numeric' }
+  );
 
   return (
     <section id="profile-posts">
@@ -43,6 +47,13 @@ export const ProfilePosts = () => {
               </p>
               <p className="page-micro">
                 {pinnedPost.jobTitle} @ {pinnedPost.companyName}
+              </p>
+              <p className="page-micro post-meta">
+                <time dateTime={pinnedPost.publishDate}>{publishDate}</time>
+                <span aria-hidden="true"> · </span>
+                <span>
+                  {pinnedPost.city}, {pinnedPost.state}
+                </span>
               </p>
             </div>
           </div>

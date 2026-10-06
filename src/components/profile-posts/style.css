@@ -42,6 +42,10 @@
   margin-bottom: 8px;
 }
 
+.post-author-info > .post-meta {
+  margin-top: 4px;
+}
+
 /* SKELETON LOADING */
 .post-content.skeleton-block {
   height: 125px;
