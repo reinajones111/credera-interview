@@ -12,6 +12,36 @@
   justify-content: center;
 }
 
+/* Side-by-side layout: the card matches the main column's height and the
+   list scrolls inside it instead of stretching the page. */
+@media only screen and (min-width: 1024px) {
+  .content-grid-block--friends {
+    position: relative;
+  }
+
+  #profile-friends {
+    position: absolute;
+    inset: 0;
+  }
+
+  #profile-friends .content-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile-friends-list {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    justify-content: flex-start;
+  }
+
+  .profile-friends-list .profile-list-item {
+    flex-shrink: 0;
+  }
+}
+
 .profile-list-item {
   display: flex;
   width: 100%;
