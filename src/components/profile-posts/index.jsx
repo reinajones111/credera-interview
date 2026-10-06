@@ -1,6 +1,7 @@
 import './style.css';
 import { getProfileData } from '../../services/profile';
 import { useQuery } from '@tanstack/react-query';
+import { Avatar } from '../avatar';
 
 export const ProfilePosts = () => {
   const { data, isLoading } = useQuery({
@@ -40,7 +41,11 @@ export const ProfilePosts = () => {
       <div className="profile-post-results">
         <div className="content-card">
           <div className="post-author fade-in">
-            <div className="post-author-avatar fade-in"></div>
+            <Avatar
+              className="post-author-avatar fade-in"
+              name={`${pinnedPost.authorFirstName} ${pinnedPost.authorLastName}`}
+              src={pinnedPost.authorImage}
+            />
             <div className="post-author-info fade-in">
               <p className="page-paragraph">
                 {pinnedPost.authorFirstName} {pinnedPost.authorLastName}

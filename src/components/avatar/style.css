@@ -1,0 +1,11 @@
+div.avatar-initials {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #9b9b9b;
+  color: var(--grayscale_0);
+  font-weight: 700;
+  font-size: 32px;
+  letter-spacing: 1px;
+  user-select: none;
+}

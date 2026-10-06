@@ -1,6 +1,7 @@
 import './style.css';
 import { getFriendsListData } from '../../services/profile';
 import { useQuery } from '@tanstack/react-query';
+import { Avatar } from '../avatar';
 
 const getLastName = name => name.trim().split(/\s+/).pop();
 
@@ -68,10 +69,11 @@ export const ProfileFriends = () => {
         <ul className="profile-friends-list">
           {friends.map((friend, index) => (
             <li className="profile-list-item fade-in" key={index}>
-              <div
+              <Avatar
                 className="profile-list-item-avatar"
-                aria-label="Stuart Raymond"
-              ></div>
+                name={friend.name}
+                src={friend.image}
+              />
               <div className="profile-list-item-info">
                 {friend.topFriend && (
                   <span className="top-friend-flag">★ Top Friend</span>
